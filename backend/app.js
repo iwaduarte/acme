@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import compression from "compression";
 import helmet from "helmet";
+import cors from "cors";
 
 import mainRouter from "./routes/routes.js";
 import usersRouter from "./routes/users.js";
@@ -12,11 +13,21 @@ const app = express();
 
 app.disable("x-powered-by");
 
+const corsOptions = {
+  origin: "http://localhost:5173", // the frontend origin
+  allowedHeaders: ["Content-Type"], // specify headers you want to allow
+};
+
+app.use(cors(corsOptions));
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(compression());
-
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173"); // or '*' for any domain
+  next();
+});
 // be aware of helmet configurations for you best use case https://helmetjs.github.io/
 app.use(helmet());
 

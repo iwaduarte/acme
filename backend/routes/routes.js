@@ -4,12 +4,11 @@ import SequelizeObject from "../database/connect.js";
 const { models } = SequelizeObject;
 const { SearchHistory } = models;
 
-console.log(models);
-
 const router = express.Router();
 
 router.get("/", (req, res) => res.json({ title: `[Sire] Hello` }));
 router.post("/search-history", async (req, res) => {
+  console.log(req.body);
   const { search, userId } = req.body;
 
   return SearchHistory.create({ searchTerm: search })
