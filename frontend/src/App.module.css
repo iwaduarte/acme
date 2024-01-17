@@ -1,0 +1,21 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.searchStyle {
+  display: flex;
+  flex: 1;
+}
+
+.submit {
+  background-color: #747bff;
+  padding: 4px;
+  margin: 2px;
+}
+
+.gif {
+  margin-top: 16px;
+}
